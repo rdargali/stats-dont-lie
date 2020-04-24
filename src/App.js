@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import PRABarChart from "./Components/PRABarChart";
+import PlayerCard from "./Components/PlayerCard";
 
 class App extends Component {
   constructor() {
@@ -46,6 +47,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Stats Don't Lie</h1>
+        <PlayerCard />
         <PRABarChart data={this.state.barChartData} />
       </div>
     );
