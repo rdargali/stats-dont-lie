@@ -1,18 +1,25 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 
-const App = () => {
-  const allPlayers = `https://www.balldontlie.io/api/v1/players?page=1`;
+import { Doughnut } from "react-chartjs-2";
 
-  useEffect(() => {
-    axios.get(allPlayers).then((res) => console.log(res.data));
-  }, []);
-  return (
-    <div className="App">
-      <h1>whatup</h1>
-    </div>
-  );
-};
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hello: "world",
+    };
+  }
+  render() {
+    const allPlayers = `https://www.balldontlie.io/api/v1/players?page=1`;
+    return (
+      <div className="App">
+        <h1>{this.state.hello}</h1>
+        <Doughnut />
+      </div>
+    );
+  }
+}
 
 export default App;
