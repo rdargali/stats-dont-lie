@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 
 const App = () => {
-  const allPlayers = `https://www.balldontlie.io/api/v1/players?page=2`;
+  const allPlayers = `https://www.balldontlie.io/api/v1/players?page=1`;
 
   useEffect(() => {
     axios.get(allPlayers).then((res) => console.log(res.data));
