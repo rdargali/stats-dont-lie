@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "lebron",
+      query: "paul",
       playerIds: [],
       players: [],
     };
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Stats Don't Lie</h1>
-        <PlayerCard />
+        <PlayerCard players={this.state.players} />
         <PRABarChart data={{}} />
         <button onClick={this.getPlayerIds}>HELP MEEEEEE</button>
       </div>

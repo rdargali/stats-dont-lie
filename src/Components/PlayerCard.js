@@ -1,18 +1,32 @@
 import React from "react";
 import "../style/PlayerCard.css";
 
-export default function PlayerCard() {
-  return (
-    <div className="card">
-      <div className="container">
-        <h4>
-          <b>LeBron James</b>
-        </h4>
-        <p>Position: PF</p>
-        <p>Team: LAL</p>
-        <p>Height: 6'8"</p>
-        <p>Weight: 245 lbs</p>
+export default function PlayerCard({ players }) {
+  const playerCards = players.map((player) => {
+    return (
+      <div className="card">
+        <div className="container">
+          <h4>
+            <b>
+              {player.first_name} {player.last_name}
+            </b>
+          </h4>
+          <p>Position: {player.position ? player.position : "n/a"}</p>
+          <p>Team: {player.team.full_name}</p>
+          <p>
+            Height:{" "}
+            {player.height_feet
+              ? `${player.height_feet}' ${player.height_inches}"`
+              : "n/a"}
+          </p>
+          <p>
+            Weight:
+            {player.weight_pounds ? `${player.weight_pounds} lbs` : "n/a"}{" "}
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  });
+
+  return <div className="player-card-container">{playerCards}</div>;
 }
