@@ -7,6 +7,7 @@ import PlayerCard from "./Components/PlayerCard";
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
       barChartData: {
         labels: ["Lebron", "Giannis", "Demar", "Steph", "Luka", "Russell"],
