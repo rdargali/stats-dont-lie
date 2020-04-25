@@ -7,49 +7,42 @@ import PlayerCard from "./Components/PlayerCard";
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
-      barChartData: {
-        labels: ["Lebron", "Giannis", "Demar", "Steph", "Luka", "Russell"],
-        datasets: [
-          {
-            label: ["Points"],
-            data: [923, 856, 789, 1011, 123, 415],
-            backgroundColor: "red",
-            borderColor: "black",
-            borderWidth: "1",
-            // hoverBackgroundColor: "grey",
-            // order: 10,
-          },
-          {
-            label: ["Rebounds"],
-            data: [92, 85, 78, 101, 13, 41],
-            backgroundColor: "green",
-            borderColor: "black",
-            borderWidth: "1",
-            // hoverBackgroundColor: "grey",
-            // order: 10,
-          },
-          {
-            label: ["Assists"],
-            data: [82, 75, 68, 71, 30, 71],
-            backgroundColor: "yellow",
-            borderColor: "black",
-            borderWidth: "1",
-            // hoverBackgroundColor: "grey",
-            // order: 10,
-          },
-        ],
-      },
+      query: "lebron",
+      playerIds: [],
+      players: [],
     };
   }
+  componentDidMount() {}
+
+  getPlayerIds = () => {
+    axios
+      .get(
+        `https://www.balldontlie.io/api/v1/players?search=${this.state.query}`
+      )
+      .then((res) => {
+        this.setState({
+          playerIds: this.state.playerIds.concat([res.data.data[0].id]),
+        });
+
+        return axios.get(
+          `https://www.balldontlie.io/api/v1/players/${res.data.data[0].id}`
+        );
+      })
+      .then((res) =>
+        this.setState({
+          players: this.state.players.concat([res.data]),
+        })
+      );
+  };
+
   render() {
-    const allPlayers = `https://www.balldontlie.io/api/v1/players?page=1`;
     return (
       <div className="App">
         <h1>Stats Don't Lie</h1>
         <PlayerCard />
-        <PRABarChart data={this.state.barChartData} />
+        <PRABarChart data={{}} />
+        <button onClick={this.getPlayerIds}>HELP MEEEEEE</button>
       </div>
     );
   }
