@@ -4,7 +4,7 @@ import "../style/PlayerCard.css";
 export default function PlayerCard({ players }) {
   const playerCards = players.map((player) => {
     return (
-      <div className="card">
+      <div key="card" className="card">
         <div className="container">
           <h4>
             <b>

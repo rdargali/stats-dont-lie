@@ -8,12 +8,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "paul",
+      query: "kawhi",
       playerIds: [],
       players: [],
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.getPlayerIds();
+  }
 
   getPlayerIds = () => {
     axios
@@ -41,8 +43,11 @@ class App extends Component {
       <div className="App">
         <h1>Stats Don't Lie</h1>
         <PlayerCard players={this.state.players} />
-        <PRABarChart data={{}} />
-        <button onClick={this.getPlayerIds}>HELP MEEEEEE</button>
+        <PRABarChart
+          player={this.state.players}
+          playerId={this.state.playerIds}
+        />
+        {/* <button onClick={this.getPlayerIds}>HELP MEEEEEE</button> */}
       </div>
     );
   }
