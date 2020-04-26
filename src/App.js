@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "lebron",
+      query: "lowry",
       playerStats: [],
     };
   }
@@ -55,9 +55,12 @@ class App extends Component {
           <PlayerCard key={player.id} player={player} />
         ))}
 
+        <h3>2019 Season Averages</h3>
+
         {this.state.playerStats.map((player) => (
           <SeasonAvgGrid key={player.id} player={player} />
         ))}
+
         <PRABarChart players={this.state.playerStats} />
       </div>
     );

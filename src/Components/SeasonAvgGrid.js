@@ -3,7 +3,6 @@ import DataGrid from "react-data-grid";
 import "react-data-grid/dist/react-data-grid.css";
 
 const SeasonAvgGrid = ({ player }) => {
-  console.log(player);
   const columns = [
     // { key: "player", name: "Player" },
     { key: "gp", name: "GP" },
@@ -48,8 +47,8 @@ const SeasonAvgGrid = ({ player }) => {
 
   return (
     <div>
-      <h3>2019 Season Averages</h3>
-      <DataGrid columns={columns} rows={rows} />
+      <h4>{`${player.first_name} ${player.last_name}`}</h4>
+      <DataGrid columns={columns} rows={rows} height={72} />
     </div>
   );
 };
