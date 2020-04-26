@@ -36,16 +36,11 @@ const PRABarChart = ({ player, playerStat }) => {
       {
         label: ["Points"],
         data: [
-          PlayerOneStats &&
-            Math.round(PlayerOneStats.pts * PlayerOneStats.games_played),
-          PlayerTwoStats &&
-            Math.round(PlayerTwoStats.pts * PlayerTwoStats.games_played),
-          PlayerThreeStats &&
-            Math.round(PlayerThreeStats.pts * PlayerThreeStats.games_played),
-          PlayerFourStats &&
-            Math.round(PlayerFourStats.pts * PlayerFourStats.games_played),
-          PlayerFiveStats &&
-            Math.round(PlayerFiveStats.pts * PlayerFiveStats.games_played),
+          PlayerOneStats && PlayerOneStats.pts,
+          PlayerTwoStats && PlayerTwoStats.pts,
+          PlayerThreeStats && PlayerThreeStats.pts,
+          PlayerFourStats && PlayerFourStats.pts,
+          PlayerFiveStats && PlayerFiveStats.pts,
         ],
         backgroundColor: "red",
         borderColor: "black",
@@ -56,16 +51,11 @@ const PRABarChart = ({ player, playerStat }) => {
       {
         label: ["Rebounds"],
         data: [
-          PlayerOneStats &&
-            Math.round(PlayerOneStats.reb * PlayerOneStats.games_played),
-          PlayerTwoStats &&
-            Math.round(PlayerTwoStats.reb * PlayerTwoStats.games_played),
-          PlayerThreeStats &&
-            Math.round(PlayerThreeStats.reb * PlayerThreeStats.games_played),
-          PlayerFourStats &&
-            Math.round(PlayerFourStats.reb * PlayerFourStats.games_played),
-          PlayerFiveStats &&
-            Math.round(PlayerFiveStats.reb * PlayerFiveStats.games_played),
+          PlayerOneStats && PlayerOneStats.reb,
+          PlayerTwoStats && PlayerTwoStats.reb,
+          PlayerThreeStats && PlayerThreeStats.reb,
+          PlayerFourStats && PlayerFourStats.reb,
+          PlayerFiveStats && PlayerFiveStats.reb,
         ],
         backgroundColor: "green",
         borderColor: "black",
@@ -76,16 +66,11 @@ const PRABarChart = ({ player, playerStat }) => {
       {
         label: ["Assists"],
         data: [
-          PlayerOneStats &&
-            Math.round(PlayerOneStats.ast * PlayerOneStats.games_played),
-          PlayerTwoStats &&
-            Math.round(PlayerTwoStats.reb * PlayerTwoStats.games_played),
-          PlayerThreeStats &&
-            Math.round(PlayerThreeStats.reb * PlayerThreeStats.games_played),
-          PlayerFourStats &&
-            Math.round(PlayerFourStats.reb * PlayerFourStats.games_played),
-          PlayerFiveStats &&
-            Math.round(PlayerFiveStats.reb * PlayerFiveStats.games_played),
+          PlayerOneStats && PlayerOneStats.ast,
+          PlayerTwoStats && PlayerTwoStats.ast,
+          PlayerThreeStats && PlayerThreeStats.ast,
+          PlayerFourStats && PlayerFourStats.ast,
+          PlayerFiveStats && PlayerFiveStats.ast,
         ],
         backgroundColor: "yellow",
         borderColor: "black",
@@ -97,6 +82,7 @@ const PRABarChart = ({ player, playerStat }) => {
   };
   return (
     <div>
+      <h3>2019 Season Averages</h3>
       <Bar
         data={chartData}
         height={50}
