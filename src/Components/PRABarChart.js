@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
-const PRABarChart = ({ player, playerStats }) => {
+const PRABarChart = ({ player, playerStat }) => {
   // const [playerIds, setPlayerIds] = useState([]);
   const [players, setPlayers] = useState([]);
-  const [playerStat, setPlayerStat] = useState([]);
+  const [playerStats, setPlayerStats] = useState([]);
 
   useEffect(() => {
-    // setPlayerIds(playerId);
-
     setPlayers(player);
-
-    setPlayerStat(playerStats);
-  }, []);
+    setPlayerStats(playerStat);
+  }, [player, playerStat]);
 
   const playerOne = players[0];
   const playerTwo = players[1];
@@ -21,11 +18,11 @@ const PRABarChart = ({ player, playerStats }) => {
   const playerFour = players[3];
   const playerFive = players[4];
 
-  const PlayerOneStats = playerStat[0];
-  const PlayerTwoStats = playerStat[1];
-  const PlayerThreeStats = playerStat[2];
-  const PlayerFourStats = playerStat[3];
-  const PlayerFiveStats = playerStat[4];
+  const PlayerOneStats = playerStats[0];
+  const PlayerTwoStats = playerStats[1];
+  const PlayerThreeStats = playerStats[2];
+  const PlayerFourStats = playerStats[3];
+  const PlayerFiveStats = playerStats[4];
 
   const chartData = {
     labels: [

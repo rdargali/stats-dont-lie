@@ -53,10 +53,10 @@ class App extends Component {
       <div className="App">
         <h1>Stats Don't Lie</h1>
         <PlayerCard players={this.state.players} />
-        {/* <PRABarChart
+        <PRABarChart
           player={this.state.players}
           playerStat={this.state.playerStats}
-        /> */}
+        />
         {/* <button onClick={this.getPlayerIds}>HELP MEEEEEE</button> */}
       </div>
     );
