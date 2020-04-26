@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
-const PRABarChart = ({ player, playerId }) => {
-  const [playerIds, setPlayerIds] = useState([]);
+const PRABarChart = ({ player, playerStats }) => {
+  // const [playerIds, setPlayerIds] = useState([]);
   const [players, setPlayers] = useState([]);
-  const [playerStats, setPlayerStats] = useState([]);
+  const [playerStat, setPlayerStat] = useState([]);
 
   useEffect(() => {
-    setPlayerIds(playerId);
+    // setPlayerIds(playerId);
 
     setPlayers(player);
 
-    axios
-      .get(
-        `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerIds[0]}`
-      )
-      .then((res) => setPlayerStats(res.data.data));
-  }, [player, playerId]);
+    setPlayerStat(playerStats);
+  }, []);
 
   const playerOne = players[0];
   const playerTwo = players[1];
@@ -25,11 +21,11 @@ const PRABarChart = ({ player, playerId }) => {
   const playerFour = players[3];
   const playerFive = players[4];
 
-  const PlayerOneStats = playerStats[0];
-  const PlayerTwoStats = playerStats[1];
-  const PlayerThreeStats = playerStats[2];
-  const PlayerFourStats = playerStats[3];
-  const PlayerFiveStats = playerStats[4];
+  const PlayerOneStats = playerStat[0];
+  const PlayerTwoStats = playerStat[1];
+  const PlayerThreeStats = playerStat[2];
+  const PlayerFourStats = playerStat[3];
+  const PlayerFiveStats = playerStat[4];
 
   const chartData = {
     labels: [

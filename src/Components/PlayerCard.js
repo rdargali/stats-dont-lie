@@ -20,7 +20,7 @@ export default function PlayerCard({ players }) {
               : "n/a"}
           </p>
           <p>
-            Weight:
+            Weight:{" "}
             {player.weight_pounds ? `${player.weight_pounds} lbs` : "n/a"}{" "}
           </p>
         </div>

@@ -8,9 +8,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "kawhi",
+      query: "lebron",
       playerIds: [],
       players: [],
+      playerStats: [],
     };
   }
   componentDidMount() {
@@ -31,11 +32,20 @@ class App extends Component {
           `https://www.balldontlie.io/api/v1/players/${res.data.data[0].id}`
         );
       })
-      .then((res) =>
+      .then((res) => {
         this.setState({
           players: this.state.players.concat([res.data]),
-        })
-      );
+        });
+
+        return axios.get(
+          `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${this.state.playerIds[0]}`
+        );
+      })
+      .then((res) => {
+        this.setState({
+          playerStats: this.state.playerStats.concat(res.data.data),
+        });
+      });
   };
 
   render() {
@@ -43,10 +53,10 @@ class App extends Component {
       <div className="App">
         <h1>Stats Don't Lie</h1>
         <PlayerCard players={this.state.players} />
-        <PRABarChart
+        {/* <PRABarChart
           player={this.state.players}
-          playerId={this.state.playerIds}
-        />
+          playerStat={this.state.playerStats}
+        /> */}
         {/* <button onClick={this.getPlayerIds}>HELP MEEEEEE</button> */}
       </div>
     );
