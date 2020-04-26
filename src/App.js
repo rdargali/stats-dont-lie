@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-import PRABarChart from "./Components/PRABarChart";
+// import PRABarChart from "./Components/PRABarChart";
 import PlayerCard from "./Components/PlayerCard";
 import SeasonAvgGrid from "./Components/SeasonAvgGrid";
 
@@ -9,42 +9,38 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "lavine",
-      playerIds: [],
-      players: [],
+      query: "lebron",
+
       playerStats: [],
     };
   }
   componentDidMount() {
-    this.getPlayerIds();
+    this.getPlayers();
   }
 
-  getPlayerIds = () => {
+  getPlayers = () => {
+    let playerData = {};
     axios
       .get(
         `https://www.balldontlie.io/api/v1/players?search=${this.state.query}`
       )
       .then((res) => {
-        this.setState({
-          playerIds: this.state.playerIds.concat([res.data.data[0].id]),
-        });
+        playerData = res.data.data[0];
 
         return axios.get(
-          `https://www.balldontlie.io/api/v1/players/${res.data.data[0].id}`
+          `https://www.balldontlie.io/api/v1/players/${playerData.id}`
         );
       })
       .then((res) => {
-        this.setState({
-          players: this.state.players.concat([res.data]),
-        });
-
         return axios.get(
-          `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${this.state.playerIds[0]}`
+          `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerData.id}`
         );
       })
       .then((res) => {
+        playerData = { ...playerData, ...res.data.data[0] };
+
         this.setState({
-          playerStats: this.state.playerStats.concat(res.data.data),
+          playerStats: [...this.state.playerStats, playerData],
         });
       });
   };
@@ -53,12 +49,13 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Stats Don't Lie</h1>
-        <PlayerCard players={this.state.players} />
+
+        {this.state.playerStats.map((player) => (
+          <PlayerCard player={player} />
+        ))}
+
         <SeasonAvgGrid />
-        <PRABarChart
-          player={this.state.players}
-          playerStat={this.state.playerStats}
-        />
+        {/* <PRABarChart playerStat={this.state.playerStats} /> */}
         {/* <button onClick={this.getPlayerIds}>HELP MEEEEEE</button> */}
       </div>
     );
