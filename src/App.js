@@ -3,12 +3,13 @@ import axios from "axios";
 import "./App.css";
 import PRABarChart from "./Components/PRABarChart";
 import PlayerCard from "./Components/PlayerCard";
+import SeasonAvgGrid from "./Components/SeasonAvgGrid";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "lebron",
+      query: "lavine",
       playerIds: [],
       players: [],
       playerStats: [],
@@ -53,6 +54,7 @@ class App extends Component {
       <div className="App">
         <h1>Stats Don't Lie</h1>
         <PlayerCard players={this.state.players} />
+        <SeasonAvgGrid />
         <PRABarChart
           player={this.state.players}
           playerStat={this.state.playerStats}

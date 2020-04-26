@@ -82,7 +82,6 @@ const PRABarChart = ({ player, playerStat }) => {
   };
   return (
     <div>
-      <h3>2019 Season Averages</h3>
       <Bar
         data={chartData}
         height={50}
