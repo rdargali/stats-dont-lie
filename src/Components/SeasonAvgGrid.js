@@ -2,9 +2,10 @@ import React from "react";
 import DataGrid from "react-data-grid";
 import "react-data-grid/dist/react-data-grid.css";
 
-const SeasonAvgGrid = () => {
+const SeasonAvgGrid = ({ player }) => {
+  console.log(player);
   const columns = [
-    { key: "player", name: "Player" },
+    // { key: "player", name: "Player" },
     { key: "gp", name: "GP" },
     { key: "pts", name: "Pts" },
     { key: "reb", name: "Reb" },
@@ -25,23 +26,23 @@ const SeasonAvgGrid = () => {
 
   const rows = [
     {
-      player: "Lebron",
-      gp: "82",
-      pts: "82",
-      reb: "82",
-      ast: "82",
-      stl: "82",
-      blk: "82",
-      to: "82",
-      fgm: "82",
-      fga: "82",
-      fgp: "82",
-      ftm: "82",
-      fta: "82",
-      ftp: "82",
-      tpm: "82",
-      tpa: "82",
-      tpp: "82",
+      // player: `player`,
+      gp: `${player.games_played}`,
+      pts: `${player.pts}`,
+      reb: `${player.reb}`,
+      ast: `${player.ast}`,
+      stl: `${player.stl}`,
+      blk: `${player.blk}`,
+      to: `${player.turnover}`,
+      fgm: `${player.fgm}`,
+      fga: `${player.fga}`,
+      fgp: `${player.fg_pct}`,
+      ftm: `${player.ftm}`,
+      fta: `${player.fta}`,
+      ftp: `${player.ft_pct}`,
+      tpm: `${player.fg3m}`,
+      tpa: `${player.fg3a}`,
+      tpp: `${player.fg3_pct}`,
     },
   ];
 
