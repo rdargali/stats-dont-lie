@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-// import PRABarChart from "./Components/PRABarChart";
+import PRABarChart from "./Components/PRABarChart";
 import PlayerCard from "./Components/PlayerCard";
 import SeasonAvgGrid from "./Components/SeasonAvgGrid";
 
@@ -10,7 +10,6 @@ class App extends Component {
     super();
     this.state = {
       query: "lebron",
-
       playerStats: [],
     };
   }
@@ -42,6 +41,8 @@ class App extends Component {
         this.setState({
           playerStats: [...this.state.playerStats, playerData],
         });
+
+        console.log(this.state.playerStats);
       });
   };
 
@@ -51,12 +52,13 @@ class App extends Component {
         <h1>Stats Don't Lie</h1>
 
         {this.state.playerStats.map((player) => (
-          <PlayerCard player={player} />
+          <PlayerCard key={player.id} player={player} />
         ))}
 
-        <SeasonAvgGrid />
-        {/* <PRABarChart playerStat={this.state.playerStats} /> */}
-        {/* <button onClick={this.getPlayerIds}>HELP MEEEEEE</button> */}
+        {this.state.playerStats.map((player) => (
+          <SeasonAvgGrid key={player.id} player={player} />
+        ))}
+        <PRABarChart players={this.state.playerStats} />
       </div>
     );
   }
