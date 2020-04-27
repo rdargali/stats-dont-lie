@@ -4,6 +4,7 @@ import "./App.css";
 import PRABarChart from "./Components/PRABarChart";
 import PlayerCard from "./Components/PlayerCard";
 import SeasonAvgGrid from "./Components/SeasonAvgGrid";
+import TrueShootingLine from "./Components/TrueShootingLine";
 
 class App extends Component {
   constructor() {
@@ -92,6 +93,8 @@ class App extends Component {
         </div>
 
         <PRABarChart players={this.state.playerStats} />
+
+        <TrueShootingLine players={this.state.playerStats} />
       </div>
     );
   }
