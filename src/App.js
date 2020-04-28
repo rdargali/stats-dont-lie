@@ -64,7 +64,7 @@ class App extends Component {
         playerData = { ...playerData, ...res.data.data[0] };
 
         return axios.get(
-          `https://www.balldontlie.io/api/v1/stats?seasons[]=2019&per_page=10&player_ids[]=${playerData.id}`
+          `https://www.balldontlie.io/api/v1/stats?seasons[]=2019&per_page=100&player_ids[]=${playerData.id}`
         );
       })
       .then((res) => {
