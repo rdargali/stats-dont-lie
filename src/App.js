@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "lebron",
+      query: "luka",
       playerStats: [],
     };
   }

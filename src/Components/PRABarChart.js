@@ -19,33 +19,25 @@ const PRABarChart = ({ players }) => {
         label: ["Points"],
         data: ptsData,
         backgroundColor: "red",
-        borderColor: "black",
         borderWidth: "1",
-        // hoverBackgroundColor: "grey",
-        // order: 10,
       },
       {
         label: ["Rebounds"],
         data: rebData,
         backgroundColor: "green",
-        borderColor: "black",
         borderWidth: "1",
-        // hoverBackgroundColor: "grey",
-        // order: 10,
       },
       {
         label: ["Assists"],
         data: astData,
         backgroundColor: "yellow",
-        borderColor: "black",
         borderWidth: "1",
-        // hoverBackgroundColor: "grey",
-        // order: 10,
       },
     ],
   };
   return (
     <div>
+      <h4>Points, Rebounds, Assists</h4>
       <Bar
         data={chartData}
         height={50}
