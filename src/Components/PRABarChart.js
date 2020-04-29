@@ -60,8 +60,8 @@ const PRABarChart = ({ players }) => {
           ticks: {
             display: true,
             beginAtZero: true,
-            min: 0,
-            max: 35,
+            //   min: 0,
+            //   max: 35,
           },
         },
       ],
@@ -71,7 +71,7 @@ const PRABarChart = ({ players }) => {
   return (
     <div className="container">
       <h4>Points, Rebounds, Assists</h4>
-      <Bar data={chartData} height={50} options={options} />
+      <Bar data={chartData} options={options} />
     </div>
   );
 };

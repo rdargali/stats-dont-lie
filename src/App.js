@@ -54,7 +54,7 @@ class App extends Component {
     this.setState({
       searchQuery: e.target.value,
     });
-    if (this.state.searchQuery && this.state.searchQuery.length > 3) {
+    if (this.state.searchQuery && this.state.searchQuery.length > 1) {
       this.getPlayerSearch();
     }
   };
@@ -63,7 +63,7 @@ class App extends Component {
     let cancel;
     axios
       .get(
-        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&per_page=10`,
+        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&season=2019`,
         {
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
         }
@@ -81,9 +81,9 @@ class App extends Component {
     let searchSuggestions;
 
     if (this.state.results.length === 0) {
-      searchSuggestions = null;
+      searchSuggestions = "";
     } else {
-      searchSuggestions = this.state.results.map((player) => (
+      searchSuggestions = this.state.results.reverse().map((player) => (
         <li key={player.id}>
           {player.first_name} {player.last_name}
         </li>
