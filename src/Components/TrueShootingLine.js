@@ -7,7 +7,6 @@ const TrueShootingLine = ({ players }) => {
 
   const datasets = players.map((player) => {
     let gamesArray = player.data.sort((a, b) => b.id - a.id);
-    console.log(gamesArray);
 
     return {
       label: `${player.first_name} ${player.last_name}`,

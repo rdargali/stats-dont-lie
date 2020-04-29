@@ -10,6 +10,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      searchQuery: "",
+      results: [],
+      //
       query: "aldridge",
       playerStats: [],
     };
@@ -17,35 +20,6 @@ class App extends Component {
   componentDidMount() {
     this.getPlayers();
   }
-
-  // getPlayersOriginal = () => {
-  //   let playerData = {};
-  //   axios
-  //     .get(
-  //       `https://www.balldontlie.io/api/v1/players?search=${this.state.query}`
-  //     )
-  //     .then((res) => {
-  //       playerData = res.data.data[0];
-
-  //       return axios.get(
-  //         `https://www.balldontlie.io/api/v1/players/${playerData.id}`
-  //       );
-  //     })
-  //     .then((res) => {
-  //       return axios.get(
-  //         `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerData.id}`
-  //       );
-  //     })
-  //     .then((res) => {
-  //       playerData = { ...playerData, ...res.data.data[0] };
-
-  //       this.setState({
-  //         playerStats: [...this.state.playerStats, playerData],
-  //       });
-
-  //       console.log(this.state.playerStats);
-  //     });
-  // };
 
   getPlayers = () => {
     let playerData = {};
@@ -76,11 +50,56 @@ class App extends Component {
       });
   };
 
+  onSearchChange = (e) => {
+    this.setState({
+      searchQuery: e.target.value,
+    });
+    if (this.state.searchQuery && this.state.searchQuery.length > 3) {
+      this.getPlayerSearch();
+    }
+  };
+
+  getPlayerSearch = () => {
+    let cancel;
+    axios
+      .get(
+        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&per_page=10`,
+        {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
+      )
+      .then((res) => {
+        this.setState({
+          results: res.data.data,
+        });
+
+        return () => cancel();
+      });
+  };
+
   render() {
+    let searchSuggestions;
+
+    if (this.state.results.length === 0) {
+      searchSuggestions = null;
+    } else {
+      searchSuggestions = this.state.results.map((player) => (
+        <li key={player.id}>
+          {player.first_name} {player.last_name}
+        </li>
+      ));
+    }
     return (
       <div className="App">
-        <h1>Stats Don't Lie</h1>
-
+        <div className="header-container">
+          <h1>Stats Don't Lie</h1>
+          <input
+            type="text"
+            className="search-box"
+            onChange={this.onSearchChange}
+          />
+          <ul className="search-suggestions">{searchSuggestions}</ul>
+        </div>
         {this.state.playerStats.map((player) => (
           <PlayerCard key={player.id} player={player} />
         ))}
