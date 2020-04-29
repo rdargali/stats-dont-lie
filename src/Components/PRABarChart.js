@@ -1,6 +1,7 @@
 import React from "react";
 // import axios from "axios";
 import { Bar } from "react-chartjs-2";
+import "../style/PRABarChart.css";
 
 const PRABarChart = ({ players }) => {
   const labels = players.map(
@@ -35,14 +36,42 @@ const PRABarChart = ({ players }) => {
       },
     ],
   };
+
+  const options = {
+    legend: {
+      position: "right",
+      // align: "start",
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+          },
+          categoryPercentage: 0.2,
+          barPercentage: 1,
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+          },
+          ticks: {
+            display: true,
+            beginAtZero: true,
+            min: 0,
+            max: 35,
+          },
+        },
+      ],
+    },
+    maintainAspectRatio: false,
+  };
   return (
-    <div>
+    <div className="container">
       <h4>Points, Rebounds, Assists</h4>
-      <Bar
-        data={chartData}
-        height={50}
-        options={{ maintainAspectRatio: true }}
-      />
+      <Bar data={chartData} height={50} options={options} />
     </div>
   );
 };

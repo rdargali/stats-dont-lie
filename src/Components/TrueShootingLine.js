@@ -1,11 +1,13 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import "../style/TrueShootingLine.css";
 
 const TrueShootingLine = ({ players }) => {
   //
 
   const datasets = players.map((player) => {
     let gamesArray = player.data.sort((a, b) => b.id - a.id);
+    console.log(gamesArray);
 
     return {
       label: `${player.first_name} ${player.last_name}`,
@@ -66,6 +68,22 @@ const TrueShootingLine = ({ players }) => {
   };
 
   const options = {
+    legend: {
+      position: "right",
+      // align: "start",
+    },
+    tooltips: {
+      callbacks: {
+        title: () => {
+          return "Game Data";
+        },
+        label: (item, data) => {
+          var datasetLabel = data.datasets[item.datasetIndex].label || "";
+          var dataPoint = item.yLabel;
+          return datasetLabel + ": " + (dataPoint * 100).toFixed(2) + "%";
+        },
+      },
+    },
     scales: {
       yAxes: [
         {
@@ -74,10 +92,14 @@ const TrueShootingLine = ({ players }) => {
             labelString: "TS%",
           },
           ticks: {
+            display: false,
             beginAtZero: true,
             min: 0,
             max: 1,
           },
+          //   gridLines: {
+          //     color: "rgba(0, 0, 0, 0)",
+          //   },
         },
       ],
       xAxes: [
@@ -86,13 +108,16 @@ const TrueShootingLine = ({ players }) => {
             display: true,
             labelString: "Games",
           },
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+          },
         },
       ],
     },
   };
 
   return (
-    <div>
+    <div className="container">
       <h4>Last 10 games true shooting percentage</h4>
       <Line data={data} options={options} />
     </div>

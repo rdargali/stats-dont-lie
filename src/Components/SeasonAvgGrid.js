@@ -5,7 +5,7 @@ import "../style/SeasonAvgGrid.css";
 
 const SeasonAvgGrid = ({ player }) => {
   const columns = [
-    // { key: "player", name: "Player" },
+    { key: "player", name: "Player" },
     { key: "gp", name: "GP" },
     { key: "pts", name: "Pts" },
     { key: "reb", name: "Reb" },
@@ -26,7 +26,7 @@ const SeasonAvgGrid = ({ player }) => {
 
   const rows = [
     {
-      // player: `player`,
+      player: `${player.last_name}`.replace(/^0+/, ""),
       gp: `${player.games_played}`.replace(/^0+/, ""),
       pts: `${player.pts}`.replace(/^0+/, ""),
       reb: `${player.reb}`.replace(/^0+/, ""),
@@ -47,8 +47,8 @@ const SeasonAvgGrid = ({ player }) => {
   ];
 
   return (
-    <div className="grid-container">
-      <h4>{`${player.first_name} ${player.last_name}`}</h4>
+    <div className="container">
+      <h3>2018 - 2019 Season Averages</h3>
       <DataGrid
         columns={columns}
         rows={rows}

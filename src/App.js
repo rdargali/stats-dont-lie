@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: "luka",
+      query: "aldridge",
       playerStats: [],
     };
   }
@@ -86,7 +86,6 @@ class App extends Component {
         ))}
 
         <div className="app-grid-container">
-          <h3>2018 - 2019 Season Averages</h3>
           {this.state.playerStats.map((player) => (
             <SeasonAvgGrid key={player.id} player={player} />
           ))}
