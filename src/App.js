@@ -50,31 +50,28 @@ class App extends Component {
       });
   };
 
-  onSearchChange = async (e) => {
+  onSearchChange = (e) => {
+    let cancel;
+
+    if (cancel !== undefined) {
+      cancel();
+    }
+
     this.setState({
       searchQuery: e.target.value,
     });
-    if (this.state.searchQuery && this.state.searchQuery.length > 1) {
-      this.getPlayerSearch();
-    }
-  };
 
-  getPlayerSearch = async () => {
-    // let cancel;
-    await axios
+    axios
       .get(
-        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&season=2019`
-        // ,
-        // {
-        //   cancelToken: new axios.CancelToken((c) => (cancel = c)),
-        // }
+        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}`,
+        {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
       )
       .then((res) => {
         this.setState({
           results: res.data.data,
         });
-
-        // return () => cancel();
       });
   };
 
