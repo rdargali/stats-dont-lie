@@ -50,7 +50,7 @@ class App extends Component {
       });
   };
 
-  onSearchChange = (e) => {
+  onSearchChange = async (e) => {
     this.setState({
       searchQuery: e.target.value,
     });
@@ -59,21 +59,22 @@ class App extends Component {
     }
   };
 
-  getPlayerSearch = () => {
-    let cancel;
-    axios
+  getPlayerSearch = async () => {
+    // let cancel;
+    await axios
       .get(
-        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&season=2019`,
-        {
-          cancelToken: new axios.CancelToken((c) => (cancel = c)),
-        }
+        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&season=2019`
+        // ,
+        // {
+        //   cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        // }
       )
       .then((res) => {
         this.setState({
           results: res.data.data,
         });
 
-        return () => cancel();
+        // return () => cancel();
       });
   };
 
@@ -97,6 +98,7 @@ class App extends Component {
             type="text"
             className="search-box"
             onChange={this.onSearchChange}
+            placeholder="Enter the name of a player"
           />
           <ul className="search-suggestions">{searchSuggestions}</ul>
         </div>
