@@ -21,7 +21,7 @@ class App extends Component {
 
   getPlayers = (playerId) => {
     let playerData = {};
-    console.log(playerId);
+
     axios
       .get(`https://www.balldontlie.io/api/v1/players/${playerId}`)
       .then((res) => {
@@ -41,9 +41,16 @@ class App extends Component {
       .then((res) => {
         playerData = { ...playerData, ...res.data };
 
-        this.setState({
-          playerStats: [...this.state.playerStats, playerData],
-        });
+        this.setState(
+          {
+            playerStats: [...this.state.playerStats, playerData].filter(
+              (player) => {
+                return player.pts && player.ast && player.reb;
+              }
+            ),
+          },
+          () => console.log(this.state.playerStats)
+        );
       });
   };
 

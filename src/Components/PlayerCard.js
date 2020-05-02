@@ -1,8 +1,8 @@
 import React from "react";
 import "../style/PlayerCard.css";
 
-const PlayerCard = ({ player }) => {
-  const playerCardJSX = (
+const PlayerCard = ({ players }) => {
+  const playerCardJSX = players.map((player) => (
     <div key="card" className="card">
       <div className="container">
         <h4>
@@ -23,7 +23,7 @@ const PlayerCard = ({ player }) => {
         </p>
       </div>
     </div>
-  );
+  ));
 
   return <div className="player-card-container">{playerCardJSX}</div>;
 };
