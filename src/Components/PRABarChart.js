@@ -4,6 +4,7 @@ import { Bar } from "react-chartjs-2";
 import "../style/PRABarChart.css";
 
 const PRABarChart = ({ players }) => {
+  //
   const labels = players.map(
     (player) => `${player.first_name} ${player.last_name}`
   );

@@ -108,15 +108,14 @@ class App extends Component {
           />
           <ul className="search-suggestions">{searchSuggestions}</ul>
         </div>
-        {this.state.playerStats.map((player) => (
-          <PlayerCard key={player.id} player={player} />
-        ))}
 
-        <div className="app-grid-container">
-          {this.state.playerStats.map((player) => (
-            <SeasonAvgGrid key={player.id} player={player} />
-          ))}
-        </div>
+        <PlayerCard players={this.state.playerStats} />
+
+        {/* <div className="app-grid-container"> */}
+
+        <SeasonAvgGrid players={this.state.playerStats} />
+
+        {/* </div> */}
 
         <PRABarChart players={this.state.playerStats} />
 
