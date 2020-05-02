@@ -44,13 +44,39 @@ const SeasonAvgGrid = ({ players }) => {
     tpp: `${player.fg3_pct}`.replace(/^0+/, ""),
   }));
 
+  let height;
+
+  switch (players.length) {
+    case 1:
+      height = 87;
+      break;
+    case 2:
+      height = 121.5;
+      break;
+    case 3:
+      height = 156;
+      break;
+    case 4:
+      height = 190.5;
+      break;
+    case 5:
+      height = 225;
+      break;
+    case 6:
+      height = 259.5;
+      break;
+
+    default:
+      height = 0;
+  }
+
   return (
     <div className="container">
       <h3>2018 - 2019 Season Averages</h3>
       <DataGrid
         columns={columns}
         rows={rows}
-        // height={72}
+        height={height}
         enableCellAutoFocus={false}
       />
     </div>

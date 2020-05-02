@@ -41,16 +41,13 @@ class App extends Component {
       .then((res) => {
         playerData = { ...playerData, ...res.data };
 
-        this.setState(
-          {
-            playerStats: [...this.state.playerStats, playerData].filter(
-              (player) => {
-                return player.pts && player.ast && player.reb;
-              }
-            ),
-          },
-          () => console.log(this.state.playerStats)
-        );
+        this.setState({
+          playerStats: [...this.state.playerStats, playerData].filter(
+            (player) => {
+              return player.pts;
+            }
+          ),
+        });
       });
   };
 
@@ -69,7 +66,7 @@ class App extends Component {
       if (searchQuery.length > 2) {
         axios
           .get(
-            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`,
+            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=5`,
             {
               cancelToken: this.cancel.token,
             }
@@ -91,8 +88,8 @@ class App extends Component {
     } else {
       const currentPlayers = this.state.results.filter((player) => {
         return (
-          player.height_feet &&
-          player.weight_pounds &&
+          player.height_feet !== "" &&
+          player.weight_pounds !== "" &&
           player.height_inches !== ""
         );
       });

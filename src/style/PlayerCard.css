@@ -12,3 +12,7 @@
 .container {
   padding: 2px 16px;
 }
+
+.player-card-container {
+  display: flex;
+}
