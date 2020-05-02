@@ -16,6 +16,8 @@ class App extends Component {
       query: "aldridge",
       playerStats: [],
     };
+
+    this.cancel = "";
   }
   componentDidMount() {
     this.getPlayers();
@@ -51,11 +53,11 @@ class App extends Component {
   };
 
   onSearchChange = (e) => {
-    let cancel;
-
-    if (cancel !== undefined) {
-      cancel();
+    if (this.cancel) {
+      this.cancel.cancel();
     }
+
+    this.cancel = axios.CancelToken.source();
 
     this.setState({
       searchQuery: e.target.value,
@@ -65,7 +67,7 @@ class App extends Component {
       .get(
         `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}`,
         {
-          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+          cancelToken: this.cancel.token,
         }
       )
       .then((res) => {
