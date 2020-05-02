@@ -12,34 +12,30 @@ class App extends Component {
     this.state = {
       results: [],
       //
-      query: "aldridge",
+
       playerStats: [],
     };
 
     this.cancel = "";
   }
-  componentDidMount() {
-    this.getPlayers();
-  }
 
-  getPlayers = () => {
+  getPlayers = (playerId) => {
     let playerData = {};
+    console.log(playerId);
     axios
-      .get(
-        `https://www.balldontlie.io/api/v1/players?search=${this.state.query}`
-      )
+      .get(`https://www.balldontlie.io/api/v1/players/${playerId}`)
       .then((res) => {
-        playerData = res.data.data[0];
+        playerData = res.data;
 
         return axios.get(
-          `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerData.id}`
+          `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerId}`
         );
       })
       .then((res) => {
         playerData = { ...playerData, ...res.data.data[0] };
 
         return axios.get(
-          `https://www.balldontlie.io/api/v1/stats?seasons[]=2019&per_page=100&player_ids[]=${playerData.id}`
+          `https://www.balldontlie.io/api/v1/stats?seasons[]=2019&per_page=100&player_ids[]=${playerId}`
         );
       })
       .then((res) => {
@@ -94,10 +90,8 @@ class App extends Component {
         );
       });
 
-      // console.log(currentPlayers);
-
       searchSuggestions = currentPlayers.map((player) => (
-        <li key={player.id}>
+        <li key={player.id} onClick={() => this.getPlayers(`${player.id}`)}>
           {player.first_name} {player.last_name}
         </li>
       ));
