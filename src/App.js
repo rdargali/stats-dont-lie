@@ -10,7 +10,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchQuery: "",
       results: [],
       //
       query: "aldridge",
@@ -53,28 +52,32 @@ class App extends Component {
   };
 
   onSearchChange = (e) => {
-    if (this.cancel) {
-      this.cancel.cancel();
-    }
+    this.cancel && this.cancel.cancel();
 
     this.cancel = axios.CancelToken.source();
 
-    this.setState({
-      searchQuery: e.target.value,
-    });
+    const searchQuery = e.target.value;
 
-    axios
-      .get(
-        `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}`,
-        {
-          cancelToken: this.cancel.token,
-        }
-      )
-      .then((res) => {
-        this.setState({
-          results: res.data.data,
-        });
+    if (!searchQuery) {
+      this.setState({
+        results: [],
       });
+    } else {
+      if (searchQuery.length > 2) {
+        axios
+          .get(
+            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=100`,
+            {
+              cancelToken: this.cancel.token,
+            }
+          )
+          .then((res) => {
+            this.setState({
+              results: res.data.data,
+            });
+          });
+      }
+    }
   };
 
   render() {
@@ -83,7 +86,17 @@ class App extends Component {
     if (this.state.results.length === 0) {
       searchSuggestions = "";
     } else {
-      searchSuggestions = this.state.results.reverse().map((player) => (
+      const currentPlayers = this.state.results.filter((player) => {
+        return (
+          player.height_feet &&
+          player.weight_pounds &&
+          player.height_inches !== ""
+        );
+      });
+
+      // console.log(currentPlayers);
+
+      searchSuggestions = currentPlayers.map((player) => (
         <li key={player.id}>
           {player.first_name} {player.last_name}
         </li>
