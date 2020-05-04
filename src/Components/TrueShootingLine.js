@@ -53,9 +53,9 @@ const TrueShootingLine = ({ players }) => {
         }`,
       ],
       fill: false,
-      // borderColor: ["red", "green", "blue"], //index this
+      borderColor: ["red", "green", "blue"], //index this
       borderWidth: 1.5,
-      backgroundColor: "blue",
+      backgroundColor: ["red", "green", "blue"],
       lineTension: 0,
       pointHoverBackgroundColor: "pink",
     };
