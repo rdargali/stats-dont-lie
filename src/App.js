@@ -66,7 +66,7 @@ class App extends Component {
       if (searchQuery.length > 2) {
         axios
           .get(
-            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=5`,
+            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=20`,
             {
               cancelToken: this.cancel.token,
             }
@@ -88,16 +88,12 @@ class App extends Component {
       searchSuggestions = "";
     } else {
       const currentPlayers = this.state.results.filter((player) => {
-        return (
-          player.height_feet !== "" &&
-          player.weight_pounds !== "" &&
-          player.height_inches !== ""
-        );
+        return player.position !== "";
       });
 
       searchSuggestions = currentPlayers.map((player) => (
         <li key={player.id} onClick={() => this.getPlayers(`${player.id}`)}>
-          {player.first_name} {player.last_name}
+          {`${player.first_name} ${player.last_name} - ${player.position} - ${player.team.full_name}`}
         </li>
       ));
     }
@@ -107,12 +103,15 @@ class App extends Component {
           <h1>
             Stats Don't Lie <i class="fas fa-basketball-ball"></i>
           </h1>
-          <input
-            type="text"
-            className="search-box"
-            onChange={this.onSearchChange}
-            placeholder="Enter the name of a player"
-          />
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-box"
+              onChange={this.onSearchChange}
+              placeholder="Search for a player..."
+            />
+            <i className="fa fa-search search-icon" />
+          </div>
           <ul className="search-suggestions">{searchSuggestions}</ul>
         </div>
 

@@ -5,7 +5,46 @@
   color: orange;
 }
 
+.search-container {
+  position: relative;
+}
+
 .search-box {
-  width: 50%;
+  width: 30vw;
   min-height: 30px;
+  border: solid 2px grey;
+  border-radius: 10px;
+  font-size: large;
+  padding: 5px;
+  background-color: #f1f1f1;
+}
+
+.search-suggestions {
+  padding: 0;
+  margin: 0;
+  width: 30vw;
+  /* text-align: left; */
+}
+
+.search-suggestions li {
+  margin: 0 auto;
+  list-style: none;
+  width: 30vw;
+  text-align: center;
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+}
+
+.search-icon {
+  position: absolute;
+  color: lightgrey;
+  font-size: 25px;
+  top: -5px;
+  right: 10px;
 }
