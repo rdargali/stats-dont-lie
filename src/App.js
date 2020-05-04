@@ -75,7 +75,8 @@ class App extends Component {
             this.setState({
               results: res.data.data,
             });
-          });
+          })
+          .catch((err) => console.log(err));
       }
     }
   };
@@ -103,7 +104,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header-container">
-          <h1>Stats Don't Lie</h1>
+          <h1>
+            Stats Don't Lie <i class="fas fa-basketball-ball"></i>
+          </h1>
           <input
             type="text"
             className="search-box"

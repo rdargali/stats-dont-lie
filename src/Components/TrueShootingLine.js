@@ -1,11 +1,36 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
+import React, { useEffect } from "react";
+import { Chart, Line } from "react-chartjs-2";
 import "../style/TrueShootingLine.css";
 
 const TrueShootingLine = ({ players }) => {
   //
 
-  const datasets = players.map((player) => {
+  useEffect(() => {
+    Chart.pluginService.register({
+      afterDraw: function (chart, easing) {
+        if (chart.tooltip._active && chart.tooltip._active.length) {
+          const activePoint = chart.controller.tooltip._active[0];
+          const ctx = chart.ctx;
+          const x = activePoint.tooltipPosition().x;
+          const topY = chart.scales["y-axis-0"].top;
+          const bottomY = chart.scales["y-axis-0"].bottom;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(x, topY);
+          ctx.lineTo(x, bottomY);
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "black";
+          ctx.stroke();
+          ctx.restore();
+        }
+      },
+    });
+  });
+
+  const colorsArray = ["red", "blue", "green", "purple", "yellow"];
+
+  const datasets = players.map((player, index) => {
     let gamesArray = player.data.sort((a, b) => b.id - a.id);
 
     return {
@@ -53,11 +78,10 @@ const TrueShootingLine = ({ players }) => {
         }`,
       ],
       fill: false,
-      borderColor: ["red", "green", "blue"], //index this
+      borderColor: colorsArray[index], //index this
+      backgroundColor: colorsArray[index],
       borderWidth: 1.5,
-      backgroundColor: ["red", "green", "blue"],
       lineTension: 0,
-      pointHoverBackgroundColor: "pink",
     };
   });
 
@@ -72,6 +96,7 @@ const TrueShootingLine = ({ players }) => {
       // align: "start",
     },
     tooltips: {
+      mode: "index",
       callbacks: {
         title: () => {
           return "Game Data";

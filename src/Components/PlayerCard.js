@@ -3,7 +3,8 @@ import "../style/PlayerCard.css";
 
 const PlayerCard = ({ players }) => {
   const playerCardJSX = players.map((player) => (
-    <div key="card" className="card">
+    <div key={player.id} className="card">
+      <i className="far fa-times-circle icon-4x" />
       <div className="container">
         <h4>
           <b>

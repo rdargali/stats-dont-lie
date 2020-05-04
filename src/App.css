@@ -1,0 +1,11 @@
+.header-container {
+  text-align: center;
+}
+.fa-basketball-ball {
+  color: orange;
+}
+
+.search-box {
+  width: 50%;
+  min-height: 30px;
+}

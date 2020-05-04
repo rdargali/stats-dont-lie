@@ -3,6 +3,7 @@
   transition: 0.3s;
   border-radius: 10px;
   max-width: 15vw;
+  position: relative;
 }
 
 .card:hover {
@@ -15,4 +16,10 @@
 
 .player-card-container {
   display: flex;
+}
+
+.fa-times-circle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
