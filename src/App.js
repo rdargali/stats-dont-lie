@@ -181,11 +181,7 @@ class App extends Component {
             removePlayer={this.removePlayer}
           />
 
-          {/* <div className="app-grid-container"> */}
-
           <SeasonAvgGrid players={this.state.playerStats} />
-
-          {/* </div> */}
 
           <PRABarChart players={this.state.playerStats} />
 
@@ -193,42 +189,6 @@ class App extends Component {
         </div>
       );
     }
-    // return (
-    //   <div className="App">
-    //     <div className="header-container">
-    //       <h1>
-    //         Stats Don't Lie <i className="fas fa-basketball-ball"></i>
-    //       </h1>
-    //       <div className="search-container">
-    //         <input
-    //           disabled={searchEnabled}
-    //           type="text"
-    //           className="search-box"
-    //           onChange={this.onSearchChange}
-    //           placeholder="Search for a player..."
-    //           value={this.state.searchQuery}
-    //         />
-    //       </div>
-
-    //       <ul className="search-suggestions">{searchSuggestions}</ul>
-    //     </div>
-
-    //     <PlayerCard
-    //       players={this.state.playerStats}
-    //       removePlayer={this.removePlayer}
-    //     />
-
-    //     {/* <div className="app-grid-container"> */}
-
-    //     <SeasonAvgGrid players={this.state.playerStats} />
-
-    //     {/* </div> */}
-
-    //     <PRABarChart players={this.state.playerStats} />
-
-    //     <TrueShootingLine players={this.state.playerStats} />
-    //   </div>
-    // );
   }
 }
 
