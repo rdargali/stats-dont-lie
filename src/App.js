@@ -11,8 +11,7 @@ class App extends Component {
     super();
     this.state = {
       results: [],
-      //
-
+      searchQuery: "",
       playerStats: [],
     };
 
@@ -41,13 +40,20 @@ class App extends Component {
       .then((res) => {
         playerData = { ...playerData, ...res.data };
 
-        this.setState({
-          playerStats: [...this.state.playerStats, playerData].filter(
-            (player) => {
-              return player.pts;
-            }
-          ),
-        });
+        this.setState(
+          {
+            playerStats: [...this.state.playerStats, playerData].filter(
+              (player) => {
+                return player.pts;
+              }
+            ),
+          },
+          () => {
+            this.setState({
+              searchQuery: "",
+            });
+          }
+        );
       });
   };
 
@@ -56,17 +62,19 @@ class App extends Component {
 
     this.cancel = axios.CancelToken.source();
 
-    const searchQuery = e.target.value;
+    this.setState({
+      searchQuery: e.target.value,
+    });
 
-    if (!searchQuery) {
+    if (!this.state.searchQuery) {
       this.setState({
         results: [],
       });
     } else {
-      if (searchQuery.length > 2) {
+      if (this.state.searchQuery.length > 2) {
         axios
           .get(
-            `https://www.balldontlie.io/api/v1/players?search=${searchQuery}&per_page=20`,
+            `https://www.balldontlie.io/api/v1/players?search=${this.state.searchQuery}&per_page=20`,
             {
               cancelToken: this.cancel.token,
             }
@@ -92,7 +100,7 @@ class App extends Component {
       });
 
       searchSuggestions = currentPlayers.map((player) => (
-        <li key={player.id} onClick={() => this.getPlayers(`${player.id}`)}>
+        <li key={player.id} onClick={() => this.getPlayers(player.id)}>
           {`${player.first_name} ${player.last_name} - ${player.position} - ${player.team.full_name}`}
         </li>
       ));
@@ -101,7 +109,7 @@ class App extends Component {
       <div className="App">
         <div className="header-container">
           <h1>
-            Stats Don't Lie <i class="fas fa-basketball-ball"></i>
+            Stats Don't Lie <i className="fas fa-basketball-ball"></i>
           </h1>
           <div className="search-container">
             <input
@@ -109,9 +117,11 @@ class App extends Component {
               className="search-box"
               onChange={this.onSearchChange}
               placeholder="Search for a player..."
+              value={this.state.searchQuery}
             />
             <i className="fa fa-search search-icon" />
           </div>
+
           <ul className="search-suggestions">{searchSuggestions}</ul>
         </div>
 

@@ -16,29 +16,33 @@
   border-radius: 10px;
   font-size: large;
   padding: 5px;
-  background-color: #f1f1f1;
 }
 
 .search-suggestions {
   padding: 0;
   margin: 0;
   width: 30vw;
-  /* text-align: left; */
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .search-suggestions li {
-  margin: 0 auto;
   list-style: none;
-  width: 30vw;
+  /* width: 30vw; */
   text-align: center;
   border: 1px solid #ddd;
   margin-top: -1px;
   background-color: #f6f6f6;
-  padding: 12px;
+  padding: 10px;
   text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.search-suggestions li:hover {
+  background-color: black;
 }
 
 .search-icon {
