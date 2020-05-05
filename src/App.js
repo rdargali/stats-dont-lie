@@ -116,41 +116,119 @@ class App extends Component {
         </li>
       ));
     }
-    return (
-      <div className="App">
-        <div className="header-container">
-          <h1>
-            Stats Don't Lie <i className="fas fa-basketball-ball"></i>
-          </h1>
-          <div className="search-container">
-            <input
-              type="text"
-              className="search-box"
-              onChange={this.onSearchChange}
-              placeholder="Search for a player..."
-              value={this.state.searchQuery}
-            />
+
+    let searchEnabled;
+
+    if (this.state.playerStats.length > 4) {
+      searchEnabled = true;
+    } else {
+      searchEnabled = false;
+    }
+
+    if (this.state.playerStats.length === 0) {
+      return (
+        <div className="App">
+          <div className="header-container">
+            <h1>
+              Stats Don't Lie <i className="fas fa-basketball-ball"></i>
+            </h1>
+            <div className="search-container">
+              <input
+                disabled={searchEnabled}
+                type="text"
+                className="search-box"
+                onChange={this.onSearchChange}
+                placeholder="Search for a player..."
+                value={this.state.searchQuery}
+              />
+            </div>
+            <ul className="search-suggestions">{searchSuggestions}</ul>
+            <span>
+              Start by using the search bar to find up to five players
+            </span>
+            <br />
+
+            <span>
+              Note: Only players who have recorded stats for the 2019-2020
+              season are available
+            </span>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <div className="header-container">
+            <h1>
+              Stats Don't Lie <i className="fas fa-basketball-ball"></i>
+            </h1>
+            <div className="search-container">
+              <input
+                disabled={searchEnabled}
+                type="text"
+                className="search-box"
+                onChange={this.onSearchChange}
+                placeholder="Search for a player..."
+                value={this.state.searchQuery}
+              />
+            </div>
+
+            <ul className="search-suggestions">{searchSuggestions}</ul>
           </div>
 
-          <ul className="search-suggestions">{searchSuggestions}</ul>
+          <PlayerCard
+            players={this.state.playerStats}
+            removePlayer={this.removePlayer}
+          />
+
+          {/* <div className="app-grid-container"> */}
+
+          <SeasonAvgGrid players={this.state.playerStats} />
+
+          {/* </div> */}
+
+          <PRABarChart players={this.state.playerStats} />
+
+          <TrueShootingLine players={this.state.playerStats} />
         </div>
+      );
+    }
+    // return (
+    //   <div className="App">
+    //     <div className="header-container">
+    //       <h1>
+    //         Stats Don't Lie <i className="fas fa-basketball-ball"></i>
+    //       </h1>
+    //       <div className="search-container">
+    //         <input
+    //           disabled={searchEnabled}
+    //           type="text"
+    //           className="search-box"
+    //           onChange={this.onSearchChange}
+    //           placeholder="Search for a player..."
+    //           value={this.state.searchQuery}
+    //         />
+    //       </div>
 
-        <PlayerCard
-          players={this.state.playerStats}
-          removePlayer={this.removePlayer}
-        />
+    //       <ul className="search-suggestions">{searchSuggestions}</ul>
+    //     </div>
 
-        {/* <div className="app-grid-container"> */}
+    //     <PlayerCard
+    //       players={this.state.playerStats}
+    //       removePlayer={this.removePlayer}
+    //     />
 
-        <SeasonAvgGrid players={this.state.playerStats} />
+    //     {/* <div className="app-grid-container"> */}
 
-        {/* </div> */}
+    //     <SeasonAvgGrid players={this.state.playerStats} />
 
-        <PRABarChart players={this.state.playerStats} />
+    //     {/* </div> */}
 
-        <TrueShootingLine players={this.state.playerStats} />
-      </div>
-    );
+    //     <PRABarChart players={this.state.playerStats} />
+
+    //     <TrueShootingLine players={this.state.playerStats} />
+    //   </div>
+    // );
   }
 }
 
