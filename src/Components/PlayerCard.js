@@ -1,27 +1,22 @@
 import React from "react";
 import "../style/PlayerCard.css";
 
-const PlayerCard = ({ players }) => {
+const PlayerCard = ({ players, removePlayer }) => {
   const playerCardJSX = players.map((player) => (
     <div key={player.id} className="card">
-      <i className="far fa-times-circle icon-4x" />
+      <i
+        className="far fa-times-circle delete-icon"
+        onClick={() => removePlayer(player.id)}
+      />
       <div className="container">
-        <h4>
-          <b>
-            {player.first_name} {player.last_name}
-          </b>
-        </h4>
-        <p>Position: {player.position ? player.position : "n/a"}</p>
-        <p>Team: {player.team.full_name}</p>
-        <p>
-          Height:{" "}
-          {player.height_feet
-            ? `${player.height_feet}' ${player.height_inches}"`
-            : "n/a"}
-        </p>
-        <p>
-          Weight: {player.weight_pounds ? `${player.weight_pounds} lbs` : "n/a"}{" "}
-        </p>
+        <strong>
+          {player.first_name} {player.last_name}
+        </strong>
+
+        <br />
+        <small>
+          {player.team.full_name} - {player.position}
+        </small>
       </div>
     </div>
   ));

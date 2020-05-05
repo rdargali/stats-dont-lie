@@ -2,8 +2,10 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 10px;
-  max-width: 15vw;
+  min-width: 15vw;
   position: relative;
+  display: inline-block;
+  margin: 5px;
 }
 
 .card:hover {
@@ -16,10 +18,17 @@
 
 .player-card-container {
   display: flex;
+  justify-content: center;
 }
 
-.fa-times-circle {
+.delete-icon {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
+  font-size: 25px;
+}
+
+.delete-icon:hover {
+  color: red;
+  cursor: pointer;
 }

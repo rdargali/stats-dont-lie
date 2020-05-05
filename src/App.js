@@ -90,6 +90,16 @@ class App extends Component {
     }
   };
 
+  removePlayer = (playerId) => {
+    const updatedPlayers = this.state.playerStats.filter((player) => {
+      return player.id !== playerId;
+    });
+
+    this.setState({
+      playerStats: updatedPlayers,
+    });
+  };
+
   render() {
     let searchSuggestions;
 
@@ -120,13 +130,15 @@ class App extends Component {
               placeholder="Search for a player..."
               value={this.state.searchQuery}
             />
-            <i className="fa fa-search search-icon" />
           </div>
 
           <ul className="search-suggestions">{searchSuggestions}</ul>
         </div>
 
-        <PlayerCard players={this.state.playerStats} />
+        <PlayerCard
+          players={this.state.playerStats}
+          removePlayer={this.removePlayer}
+        />
 
         {/* <div className="app-grid-container"> */}
 

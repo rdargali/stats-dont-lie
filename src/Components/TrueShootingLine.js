@@ -1,32 +1,32 @@
-import React, { useEffect } from "react";
-import { Chart, Line } from "react-chartjs-2";
+import React from "react";
+import { Line } from "react-chartjs-2";
 import "../style/TrueShootingLine.css";
 
 const TrueShootingLine = ({ players }) => {
   //
 
-  useEffect(() => {
-    Chart.pluginService.register({
-      afterDraw: function (chart, easing) {
-        if (chart.tooltip._active && chart.tooltip._active.length) {
-          const activePoint = chart.controller.tooltip._active[0];
-          const ctx = chart.ctx;
-          const x = activePoint.tooltipPosition().x;
-          const topY = chart.scales["y-axis-0"].top;
-          const bottomY = chart.scales["y-axis-0"].bottom;
+  // useEffect(() => {
+  //   Chart.pluginService.register({
+  //     afterDraw: function (chart, easing) {
+  //       if (chart.tooltip._active && chart.tooltip._active.length) {
+  //         const activePoint = chart.controller.tooltip._active[0];
+  //         const ctx = chart.ctx;
+  //         const x = activePoint.tooltipPosition().x;
+  //         const topY = chart.scales["y-axis-0"].top;
+  //         const bottomY = chart.scales["y-axis-0"].bottom;
 
-          ctx.save();
-          ctx.beginPath();
-          ctx.moveTo(x, topY);
-          ctx.lineTo(x, bottomY);
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = "black";
-          ctx.stroke();
-          ctx.restore();
-        }
-      },
-    });
-  });
+  //         ctx.save();
+  //         ctx.beginPath();
+  //         ctx.moveTo(x, topY);
+  //         ctx.lineTo(x, bottomY);
+  //         ctx.lineWidth = 2;
+  //         ctx.strokeStyle = "lightgrey";
+  //         ctx.stroke();
+  //         ctx.restore();
+  //       }
+  //     },
+  //   });
+  // });
 
   const colorsArray = ["red", "blue", "green", "purple", "yellow"];
 
@@ -78,7 +78,7 @@ const TrueShootingLine = ({ players }) => {
         }`,
       ],
       fill: false,
-      borderColor: colorsArray[index], //index this
+      borderColor: colorsArray[index],
       backgroundColor: colorsArray[index],
       borderWidth: 1.5,
       lineTension: 0,

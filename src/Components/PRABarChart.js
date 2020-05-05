@@ -20,19 +20,19 @@ const PRABarChart = ({ players }) => {
       {
         label: ["Points"],
         data: ptsData,
-        backgroundColor: "red",
+        backgroundColor: "green",
         borderWidth: "1",
       },
       {
         label: ["Rebounds"],
         data: rebData,
-        backgroundColor: "green",
+        backgroundColor: "blue",
         borderWidth: "1",
       },
       {
         label: ["Assists"],
         data: astData,
-        backgroundColor: "yellow",
+        backgroundColor: "red",
         borderWidth: "1",
       },
     ],
@@ -41,6 +41,7 @@ const PRABarChart = ({ players }) => {
   const options = {
     legend: {
       position: "right",
+      // display: false,
       // align: "start",
     },
     scales: {
@@ -49,7 +50,7 @@ const PRABarChart = ({ players }) => {
           gridLines: {
             color: "rgba(0, 0, 0, 0)",
           },
-          categoryPercentage: 0.2,
+          categoryPercentage: 0.4,
           barPercentage: 1,
         },
       ],
@@ -67,11 +68,11 @@ const PRABarChart = ({ players }) => {
         },
       ],
     },
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
   };
   return (
     <div className="container">
-      <h4>Points, Rebounds, Assists</h4>
+      {/* <h4>Points, Rebounds, Assists</h4> */}
       <Bar data={chartData} options={options} />
     </div>
   );
