@@ -119,7 +119,7 @@ const TrueShootingLine = ({ players }) => {
 
   return (
     <div className="container">
-      <h4>Last 10 games true shooting percentage</h4>
+      <h4>True shooting % over last 10 games</h4>
       <Line data={data} options={options} />
     </div>
   );
