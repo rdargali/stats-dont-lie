@@ -15,4 +15,4 @@
 ## Dependencies
 
 - Made with React, Charts.js, React Data Grid, and Tipper.js
-- Data pull from the [Ball Don't like API](https://www.balldontlie.io/)
+- Data pull from the [Ball Don't Lie API](https://www.balldontlie.io/)
