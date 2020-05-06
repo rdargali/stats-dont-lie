@@ -53,3 +53,11 @@ body {
   background-color: #f4a540;
   cursor: pointer;
 }
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+::-moz-placeholder {
+  text-align: center;
+}
