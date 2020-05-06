@@ -6,8 +6,11 @@ import "tippy.js/dist/tippy.css";
 
 const PlayerCard = ({ players, removePlayer }) => {
   const playerCardJSX = players.map((player) => (
-    <Tippy content={`${player.team.full_name} - ${player.position}`}>
-      <div key={player.id} className="card">
+    <Tippy
+      content={`${player.team.full_name} - ${player.position}`}
+      key={player.id}
+    >
+      <div className="card">
         <i
           className="far fa-times-circle delete-icon"
           onClick={() => removePlayer(player.id)}

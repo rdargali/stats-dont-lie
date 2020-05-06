@@ -2,10 +2,16 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import "../style/TrueShootingLine.css";
 
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+
 const TrueShootingLine = ({ players }) => {
   //
 
   const colorsArray = ["orange", "blue", "green", "purple", "black"];
+
+  const trueShootingDef =
+    "In basketball, true shooting percentage is an advanced statistic that measures a player's efficiency at shooting the ball. It is intended to more accurately calculate a player's shooting efficiency than field goal percentage, free throw percentage, and three-point field goal percentage taken individually as all three are accounted for in its calculation. It is commonly abbreviated TS%. It is calculated as Points / [2 * (FGA + .44*FTA) ]";
 
   const datasets = players.map((player, index) => {
     let gamesArray = player.data.sort((a, b) => b.id - a.id);
@@ -119,7 +125,14 @@ const TrueShootingLine = ({ players }) => {
 
   return (
     <div className="container">
-      <h4>True shooting % over last 10 games</h4>
+      <h4>True Shooting % Over Last 10 Games</h4>
+      <Tippy content={trueShootingDef} placement="bottom">
+        <h6>
+          What is True Shooting? &nbsp;
+          <i class="fas fa-info-circle" />
+        </h6>
+      </Tippy>
+
       <Line data={data} options={options} />
     </div>
   );

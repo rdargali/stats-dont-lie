@@ -50,8 +50,8 @@ const PRABarChart = ({ players }) => {
           gridLines: {
             color: "rgba(0, 0, 0, 0)",
           },
-          categoryPercentage: 0.4,
-          barPercentage: 1,
+          // categoryPercentage: 0.4,
+          // barPercentage: 1,
         },
       ],
       yAxes: [
@@ -72,7 +72,7 @@ const PRABarChart = ({ players }) => {
   };
   return (
     <div className="container">
-      {/* <h4>Points, Rebounds, Assists</h4> */}
+      <h4>Offensive Comparison</h4>
       <Bar data={chartData} options={options} />
     </div>
   );
