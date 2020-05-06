@@ -125,6 +125,32 @@ class App extends Component {
       searchEnabled = false;
     }
 
+    let placeholderText;
+
+    switch (this.state.playerStats.length) {
+      case 0:
+        placeholderText = "Search for up to five players...";
+        break;
+      case 1:
+        placeholderText = "Search for up to four more players...";
+        break;
+      case 2:
+        placeholderText = "Search for up to three more players...";
+        break;
+      case 3:
+        placeholderText = "Search for up to two more players...";
+        break;
+      case 4:
+        placeholderText = "Search for one more player...";
+        break;
+      case 5:
+        placeholderText = "Remove at least one player to add another player...";
+        break;
+
+      default:
+        placeholderText = "Search for a player...";
+    }
+
     if (this.state.playerStats.length === 0) {
       return (
         <div className="App">
@@ -138,15 +164,15 @@ class App extends Component {
                 type="text"
                 className="search-box"
                 onChange={this.onSearchChange}
-                placeholder="Search for a player..."
+                placeholder={placeholderText}
                 value={this.state.searchQuery}
               />
             </div>
             <ul className="search-suggestions">{searchSuggestions}</ul>
-            <span>
+            {/* <span>
               Start by using the search bar to find up to five players
             </span>
-            <br />
+            <br /> */}
 
             <span>
               Note: Only players who have recorded stats for the 2019-2020
@@ -168,7 +194,7 @@ class App extends Component {
                 type="text"
                 className="search-box"
                 onChange={this.onSearchChange}
-                placeholder="Search for a player..."
+                placeholder={placeholderText}
                 value={this.state.searchQuery}
               />
             </div>
