@@ -115,6 +115,8 @@ class App extends Component {
           {`${player.first_name} ${player.last_name} - ${player.position} - ${player.team.full_name}`}
         </li>
       ));
+
+      console.log(currentPlayers);
     }
 
     let searchEnabled;
@@ -174,10 +176,10 @@ class App extends Component {
             </span>
             <br /> */}
 
-            <span>
+            <small>
               Note: Only players who have recorded stats for the 2019-2020
               season are available
-            </span>
+            </small>
           </div>
         </div>
       );

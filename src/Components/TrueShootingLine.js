@@ -129,7 +129,7 @@ const TrueShootingLine = ({ players }) => {
       <Tippy content={trueShootingDef} placement="bottom">
         <h6>
           What is True Shooting? &nbsp;
-          <i class="fas fa-info-circle" />
+          <i className="fas fa-info-circle" />
         </h6>
       </Tippy>
 
