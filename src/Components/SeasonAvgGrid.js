@@ -72,7 +72,7 @@ const SeasonAvgGrid = ({ players }) => {
 
   return (
     <div className="container">
-      <h3>2019 - 2020 Season Averages</h3>
+      <h3>2020 - 2021 Season Averages</h3>
       <DataGrid
         columns={columns}
         rows={rows}
