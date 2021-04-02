@@ -177,7 +177,7 @@ class App extends Component {
             <br /> */}
 
             <small>
-              Note: Only players who have recorded stats for the 2019-2020
+              Note: Only players who have recorded stats for the 2020-2021
               season are available
             </small>
           </div>
